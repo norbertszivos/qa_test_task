@@ -37,3 +37,16 @@ sudo apt install software-properties-common
 sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt install -y ansible
 ```
+
+### Clone the project
+
+```bash
+git clone https://github.com/norbertszivos/qa_test_task.git
+```
+
+### Start vagrant
+
+```bash
+cd qa_test_task/vm
+vagrant up
+```
