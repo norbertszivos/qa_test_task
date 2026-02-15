@@ -1,0 +1,52 @@
+# vim: ft=ansible.yaml:syntax=yaml.jinja
+---
+
+- name: Vagrant role
+  tags: vagrant
+  block:
+    - name: Update all packages
+      become: true
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        name: "*"
+        state: latest
+      tags:
+        - vagrant_apt_update
+
+    - name: Check if a reboot is needed
+      become: true
+      register: reboot_required_file
+      stat: path=/var/run/reboot-required
+      tags:
+        - vagrant_apt_update
+
+    - name: Reboot after the packages are updated
+      become: true
+      ansible.builtin.reboot:
+        test_command: whoami
+      when: reboot_required_file.stat.exists
+      tags:
+        - vagrant_apt_update
+
+    - name: Install required packages
+      become: true
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - systemd-timesyncd
+        - locales
+
+    - name: Set proper locale
+      become: true
+      ansible.builtin.lineinfile:
+        path: /etc/locale.gen
+        state: present
+        line: en_US.UTF-8 UTF-8
+
+    - name: Run locale-gen
+      become: true
+      changed_when: true
+      ansible.builtin.command:
+        cmd: locale-gen

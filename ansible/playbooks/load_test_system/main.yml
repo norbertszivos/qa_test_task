@@ -1,0 +1,9 @@
+# vim: ft=ansible.yaml:syntax=yaml.jinja
+---
+
+- name: Managing Load Test System
+  hosts:
+    - load_test
+
+  roles:
+    - vagrant
