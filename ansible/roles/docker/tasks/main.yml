@@ -1,0 +1,26 @@
+# vim: ft=ansible.yaml:syntax=yaml.jinja
+---
+
+- name: Docker role
+  tags: docker
+  block:
+    - name: Install required packages
+      become: true
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - docker.io
+        - docker-compose
+
+    - name: Add user to docker group
+      become: true
+      ansible.builtin.user:
+        name: "{{ docker_user }}"
+        groups: docker
+        append: true
+
+    - name: Reboot after the packages and user group are updated
+      become: true
+      ansible.builtin.reboot:
+        test_command: whoami

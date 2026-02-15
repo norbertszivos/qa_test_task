@@ -2,3 +2,5 @@ ansible_host: 10.80.0.100
 ansible_user: vagrant
 ansible_host_key_checking: false
 ansible_private_key_file: ../vm/.vagrant/machines/default/libvirt/private_key
+
+docker_user: vagrant
