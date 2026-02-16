@@ -50,3 +50,14 @@ git clone https://github.com/norbertszivos/qa_test_task.git
 cd qa_test_task/vm
 vagrant up
 ```
+
+### Install Simple API for testing
+
+> [!NOTE]
+> A simple REST API with Redis database built with Spring boot to learn Docker and Kubernetes.
+> URL: https://hub.docker.com/r/jkaninda/simple-api
+
+```bash
+cd ../ansible
+ansible-playbook -i inventory playbooks/load_test_system/main.yml
+```
