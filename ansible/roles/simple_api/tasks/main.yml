@@ -1,0 +1,30 @@
+# vim: ft=ansible.yaml:syntax=yaml.jinja
+---
+- name: Simple API role
+  tags: simple_api
+  block:
+    - name: "Copy compose.yml to /home/{{ simple_api_docker_user }}/compose.yml"
+      ansible.builtin.copy:
+        src: files/compose.yml
+        dest: "/home/{{ simple_api_docker_user }}/compose.yml"
+        mode: '644'
+
+    - name: Pull container images
+      ansible.builtin.command: docker-compose pull
+      timeout: 600
+      register: result
+      until: result is not failed
+      retries: 3
+      delay: 5
+
+    - name: Run containers
+      ansible.builtin.command: docker-compose up -d
+
+    - name: Check Simple API service
+      ansible.builtin.uri:
+        url: "http://localhost:{{ simple_api_port }}"
+        method: GET
+      register: result
+      until: result.status == 200
+      retries: 10
+      delay: 5

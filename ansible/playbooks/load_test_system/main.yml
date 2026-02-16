@@ -8,3 +8,4 @@
   roles:
     - vagrant
     - docker
+    - simple_api

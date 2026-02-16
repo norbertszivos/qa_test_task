@@ -3,4 +3,9 @@ ansible_user: vagrant
 ansible_host_key_checking: false
 ansible_private_key_file: ../vm/.vagrant/machines/default/libvirt/private_key
 
+# --------------------------- docker role -----------------------------
 docker_user: vagrant
+
+# --------------------------- simple_api role -----------------------------
+simple_api_docker_user: "{{ docker_user }}"
+simple_api_port: 8080
