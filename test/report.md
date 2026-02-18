@@ -1,5 +1,6 @@
 # QA Test Report
 
+
 ## Test System Information
 
 ```
@@ -18,22 +19,26 @@ Ubuntu                     | 24.04 LTS   |
 └── Locust                 | 2.24.0      | http://localhost:8089
 ```
 
+
 ## Test Objective
 
-The objective of this test cycle was to validate the performance, stability and response time of the Simple API.
+The objective of this test cycle was to validate the performance, stability, and response time of the Simple API.
 Moreover, find possible issues in the system.
+
 
 ## Test Approach
 
 * The test was performed with Locust
 * Collecting data with Locust, Btop, and Grafana
-  * Locust: Generating load on the API and checking response time and errors, and collect statistics from the VM via libvirt
+  * Locust: Generating load on the API and checking response time and errors, and collecting statistics from the VM via libvirt
   * Btop: Show CPU, memory, disk, and network usage on the VM
   * Grafana: Show CPU and memory (and many more) usage on the VM
 * Managing the VM with Vagrant and Ansible
 * Test output formats are CSV and HTML (see in the [stats/](./stats) folder)
 
+
 ### What Types of Performance Tests Were Used?
+
 
 #### Load Testing
 
@@ -43,6 +48,7 @@ Evaluates system behavior under expected user loads.
 * Adds 10 users per second until the total reaches 100
 * Runs the test for 5 minutes
 
+
 #### Stress Testing
 
 Pushes the system beyond its capacity to find breaking points.
@@ -50,6 +56,7 @@ Pushes the system beyond its capacity to find breaking points.
 * Simulates 1000 concurrent users
 * Adds 50 users per second until the total reaches 1000
 * Runs the test for 10 minutes
+
 
 #### Soak Testing
 
@@ -59,6 +66,7 @@ Runs the system over an extended period to check for memory leaks or stability i
 * Adds 5 users per second until the total reaches 200
 * Runs the test for 2 hours
 
+
 #### Spike Testing
 
 Assesses the system's ability to handle sudden traffic surges.
@@ -67,11 +75,15 @@ Assesses the system's ability to handle sudden traffic surges.
 * Adds 500 users immediately
 * Runs the test for 5 minutes
 
+
 ## Test Execution Summary
+
 
 ### Testing With A Small Constant Database
 
 In these tests, it just requests data from the API.
+
+---
 
 #### Load Testing
 
@@ -81,17 +93,22 @@ In these tests, it just requests data from the API.
 
 ![Locust report](./stats/load_testing/with_constant_database/report_1771424849.07.png)
 
+
 ##### VM Metrics In Idle State
 
-![VM in idle state](./stats/load_testing/with_constant_database/Screenshot from 2026-02-18 10-12-56.png)
+![VM in idle state](<./stats/load_testing/with_constant_database/Screenshot from 2026-02-18 10-12-56.png>)
+
 
 ##### VM Metrics Under Test
 
-![VM under test](./stats/load_testing/with_constant_database/Screenshot from 2026-02-18 10-17-26.png)
+![VM under test](<./stats/load_testing/with_constant_database/Screenshot from 2026-02-18 10-17-26.png>)
+
 
 ##### Summary
 
 The VM is healthy. It can handle the given load.
+
+---
 
 #### Stress Testing
 
@@ -101,17 +118,22 @@ The VM is healthy. It can handle the given load.
 
 ![Locust report](./stats/stress_testing/with_constant_database/report_1771425382.503.png)
 
+
 ##### VM Metrics In Idle State
 
-![VM in idle state](./stats/stress_testing/with_constant_database/Screenshot from 2026-02-18 10-29-30.png)
+![VM in idle state](<./stats/stress_testing/with_constant_database/Screenshot from 2026-02-18 10-29-30.png>)
+
 
 ##### VM Metrics Under Test
 
-![VM under test](./stats/stress_testing/with_constant_database/Screenshot from 2026-02-18 10-35-48.png)
+![VM under test](<./stats/stress_testing/with_constant_database/Screenshot from 2026-02-18 10-35-48.png>)
+
 
 ##### Summary
 
 The VM is healthy. It can handle the given load.
+
+---
 
 #### Soak Testing
 
@@ -121,17 +143,22 @@ The VM is healthy. It can handle the given load.
 
 ![Locust report](./stats/soak_testing/with_constant_database/report_1771425139.599.png)
 
+
 ##### VM Metrics In Idle State
 
-![VM in idle state](./stats/soak_testing/with_constant_database/Screenshot from 2026-02-18 11-06-47.png)
+![VM in idle state](<./stats/soak_testing/with_constant_database/Screenshot from 2026-02-18 11-06-47.png>)
+
 
 ##### VM Metrics Under Test
 
-![VM under test](./stats/soak_testing/with_constant_database/Screenshot from 2026-02-18 11-25-43.png)
+![VM under test](<./stats/soak_testing/with_constant_database/Screenshot from 2026-02-18 11-25-43.png>)
+
 
 ##### Summary
 
 The VM is healthy. It can handle the given load.
+
+---
 
 #### Spike Testing
 
@@ -141,13 +168,16 @@ The VM is healthy. It can handle the given load.
 
 ![Locust report](./stats/spike_testing/with_constant_database/report_1771425259.098.png)
 
+
 ##### VM Metrics In Idle State
 
-![VM in idle state](./stats/spike_testing/with_constant_database/Screenshot from 2026-02-18 10-51-06.png)
+![VM in idle state](<./stats/spike_testing/with_constant_database/Screenshot from 2026-02-18 10-51-06.png>)
+
 
 ##### VM Metrics Under Test
 
-![VM under test](./stats/spike_testing/with_constant_database/Screenshot from 2026-02-18 10-55-55.png)
+![VM under test](<./stats/spike_testing/with_constant_database/Screenshot from 2026-02-18 10-55-55.png>)
+
 
 ##### Summary
 
@@ -155,10 +185,14 @@ The VM is healthy. It can handle the given load.
 However, at the beginning, the CPU load was high, but after that it settled down.
 We can see this in the response time as well.
 
+---
+
 
 ### Testing With An Increasing Database
 
 In these tests, it requests and sends data to the API.
+
+---
 
 #### Load Testing
 
@@ -168,19 +202,24 @@ In these tests, it requests and sends data to the API.
 
 ![Locust report](./stats/load_testing/with_increasing_database/report_1771425071.741.png)
 
+
 ##### VM Metrics In Idle State
 
-![VM in idle state](./stats/load_testing/with_increasing_database/Screenshot from 2026-02-17 22-38-45.png)
+![VM in idle state](<./stats/load_testing/with_increasing_database/Screenshot from 2026-02-17 22-38-45.png>)
+
 
 ##### VM Metrics Under Test
 
-![VM under test](./stats/load_testing/with_increasing_database/Screenshot from 2026-02-17 22-44-16.png)
+![VM under test](<./stats/load_testing/with_increasing_database/Screenshot from 2026-02-17 22-44-16.png>)
+
 
 ##### Summary
 
 The VM is healthy. It can handle the given load, but errors happen.
 When it tries to request or update an item, it gets a 404 (Not Found) error.
 The response time continuously increases as the database size increases.
+
+---
 
 #### Stress Testing
 
@@ -190,13 +229,16 @@ The response time continuously increases as the database size increases.
 
 ![Locust report](./stats/stress_testing/with_increasing_database/report_1771425418.576.png)
 
+
 ##### VM Metrics In Idle State
 
-![VM in idle state](./stats/stress_testing/with_increasing_database/Screenshot from 2026-02-17 23-16-50.png)
+![VM in idle state](<./stats/stress_testing/with_increasing_database/Screenshot from 2026-02-17 23-16-50.png>)
+
 
 ##### VM Metrics Under Test
 
-![VM under test](./stats/stress_testing/with_increasing_database/Screenshot from 2026-02-17 23-25-46.png)
+![VM under test](<./stats/stress_testing/with_increasing_database/Screenshot from 2026-02-17 23-25-46.png>)
+
 
 ##### Summary
 
@@ -204,6 +246,8 @@ The VM has a heavy CPU usage.
 It can handle most of the given load, but lots of errors happen, and the response is really slow.
 When it tries to request or update an item, it gets a 404 (Not Found) error.
 The response time continuously increases as the database size increases.
+
+---
 
 #### Soak Testing
 
@@ -213,13 +257,16 @@ The response time continuously increases as the database size increases.
 
 ![Locust report](./stats/soak_testing/with_increasing_database/report_1771425211.742.png)
 
+
 ##### VM Metrics In Idle State
 
-![VM in idle state](./stats/soak_testing/with_increasing_database/Screenshot from 2026-02-18 00-09-24.png)
+![VM in idle state](<./stats/soak_testing/with_increasing_database/Screenshot from 2026-02-18 00-09-24.png>)
+
 
 ##### VM Metrics Under Test
 
-![VM under test](./stats/soak_testing/with_increasing_database/Screenshot from 2026-02-18 00-17-19.png)
+![VM under test](<./stats/soak_testing/with_increasing_database/Screenshot from 2026-02-18 00-17-19.png>)
+
 
 ##### Summary
 
@@ -229,6 +276,8 @@ When it tries to request or update an item, it gets a 404 (Not Found) error. Als
 The response time continuously increases as the database size increases.
 After an hour, the response time was stabilized at 60 seconds. In that time, the failures/s also higher.
 
+---
+
 #### Spike Testing
 
 |            | Requests | Fails | Current RPS | Current Failures/s | Response time 95%ile (ms) |
@@ -237,13 +286,16 @@ After an hour, the response time was stabilized at 60 seconds. In that time, the
 
 ![Locust report](./stats/spike_testing/with_increasing_database/report_1771425293.552.png)
 
+
 ##### VM Metrics In Idle State
 
-![VM in idle state](./stats/spike_testing/with_increasing_database/Screenshot from 2026-02-17 23-51-05.png)
+![VM in idle state](<./stats/spike_testing/with_increasing_database/Screenshot from 2026-02-17 23-51-05.png>)
+
 
 ##### VM Metrics Under Test
 
-![VM under test](./stats/spike_testing/with_increasing_database/Screenshot from 2026-02-17 23-56-02.png)
+![VM under test](<./stats/spike_testing/with_increasing_database/Screenshot from 2026-02-17 23-56-02.png>)
+
 
 ##### Summary
 
@@ -252,7 +304,11 @@ It can handle most of the given load, but lots of errors happen, and the respons
 When it tries to request or update an item, it gets a 404 (Not Found) error.
 The response time continuously increases as the database size increases.
 
+---
+
+
 ## Found Defects
+
 
 ### 404 (Not Found) Errors
 
@@ -264,11 +320,13 @@ DefaultHandlerExceptionResolver : Resolved [org.springframework.web.context.requ
 
 Probably a race condition, or somehow it cannot handle too many requests.
 
+
 ### Response Time Increases With The Database Size
 
 The `GET /books` request responds back with all of the books in the database.
 
 A possible solution for this problem is to use pagination and/or caching.
+
 
 ## Conclusion
 
