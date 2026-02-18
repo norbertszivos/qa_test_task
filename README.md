@@ -30,6 +30,18 @@ Simple API:
 * It has a Docker image
 * No need to write your own API
 
+Btop:
+* Easy to use
+* Fast and responsive UI with UP, DOWN key process selection
+* Function for showing detailed stats
+
+Grafana:
+* Nice, feature-rich dashboards
+
+> [!NOTE]
+> I deployed Btop and Grafana on the VM because I found issues in libvirt when trying to collect the guest machine statistics.
+> Especially, the guest machine vCPU statistic collection runs into errors. So it can only collect the host CPU time.
+
 ## Manual or semi-automated steps
 
 ### Preparation
@@ -39,6 +51,7 @@ Simple API:
 > OS: Ubuntu 24.04 LTS
 > Vagrant: 2.4.9
 > Ansible core: 2.20.2
+> Locust: 2.24.0
 
 #### Example how to install vagrant with libvirt
 
@@ -70,7 +83,7 @@ sudo apt install -y ansible
 ### Example how to install Locust
 
 > [!NOTE]
-> An open source load testing tool.
+> Locust is an open source load testing tool.
 > URL: https://locust.io/
 
 ```bash
@@ -121,7 +134,7 @@ locust
 #### Using Locust headless mode
 
 ```bash
-locust --headless --host http://localhost:8080 --users 100 --spawn-rate 10 --run-time 60
+locust --headless --host http://10.80.0.100:8080 --users 100 --spawn-rate 10 --run-time 60
 
 ...
 
