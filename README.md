@@ -2,6 +2,7 @@
 
 **The project is using Vagrant for the VM, Ansible for managing the VM, and Locust for testing.**
 
+
 ## Why were these tools chosen?
 
 Vagrant:
@@ -23,6 +24,7 @@ Locust:
 > [!NOTE]
 > Alternative option for testing what I would try out: Grafana k6
 
+
 ### Extra tools
 
 Simple API:
@@ -42,16 +44,19 @@ Grafana:
 > I deployed Btop and Grafana on the VM because I found issues in libvirt when trying to collect the guest machine statistics.
 > Especially, the guest machine vCPU statistic collection runs into errors. So it can only collect the host CPU time.
 
+
 ## Manual or semi-automated steps
+
 
 ### Preparation
 
 > [!NOTE]
 > The following versions were used for development:
-> OS: Ubuntu 24.04 LTS
-> Vagrant: 2.4.9
-> Ansible core: 2.20.2
-> Locust: 2.24.0
+> * OS: Ubuntu 24.04 LTS
+> * Vagrant: 2.4.9
+> * Ansible core: 2.20.2
+> * Locust: 2.24.0
+
 
 #### Example how to install vagrant with libvirt
 
@@ -72,6 +77,7 @@ vagrant plugin install vagrant-libvirt
 > [!NOTE]
 > It is possible that you should restart the OS to make vagrant and libvirt work.
 
+
 #### Example how to install ansible
 
 ```bash
@@ -80,21 +86,24 @@ sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt install -y ansible
 ```
 
+
 ### Example how to install Locust
 
 > [!NOTE]
-> Locust is an open source load testing tool.
+> Locust is an open source load testing tool.<br>
 > URL: https://locust.io/
 
 ```bash
 sudo apt install python3-locust
 ```
 
+
 ### Clone the project
 
 ```bash
 git clone https://github.com/norbertszivos/qa_test_task.git
 ```
+
 
 ### Start vagrant
 
@@ -103,10 +112,11 @@ cd qa_test_task/vm
 vagrant up
 ```
 
+
 ### Install Simple API for testing
 
 > [!NOTE]
-> A simple REST API with Redis database built with Spring boot to learn Docker and Kubernetes.
+> A simple REST API with Redis database built with Spring boot to learn Docker and Kubernetes.<br>
 > URL: https://hub.docker.com/r/jkaninda/simple-api
 
 ```bash
@@ -114,11 +124,13 @@ cd ../ansible
 ansible-playbook -i inventory playbooks/load_test_system/main.yml
 ```
 
+
 ### Run tests
 
 ```bash
 cd ../test
 ```
+
 
 #### Using Locust web UI
 
@@ -127,9 +139,10 @@ locust
 ```
 
 > [!NOTE]
-> Open a browser and visit the website below.
-> URL: http://localhost:8089
+> Open a browser and visit the website below.<br>
+> URL: http://localhost:8089<br>
 > Set the number of users, the spawn rate, and the host, then click on the start swarm button.
+
 
 #### Using Locust headless mode
 
