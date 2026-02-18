@@ -3,11 +3,21 @@
 - name: Simple API role
   tags: simple_api
   block:
-    - name: "Copy compose.yml to /home/{{ simple_api_docker_user }}/compose.yml"
+    - name: Create config directory if it does not exist
+      ansible.builtin.file:
+        path: "/home/{{ simple_api_docker_user }}/config"
+        state: directory
+        mode: '0755'
+
+    - name: Copy files
       ansible.builtin.copy:
-        src: files/compose.yml
-        dest: "/home/{{ simple_api_docker_user }}/compose.yml"
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
         mode: '644'
+      loop:
+        - { src: "files/compose.yml", dest: "/home/{{ simple_api_docker_user }}/compose.yml" }
+        - { src: "files/datasources.yml", dest: "/home/{{ simple_api_docker_user }}/config/datasources.yml" }
+        - { src: "files/prometheus.yml", dest: "/home/{{ simple_api_docker_user }}/config/prometheus.yml" }
 
     - name: Pull container images
       ansible.builtin.command: docker-compose pull

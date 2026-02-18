@@ -37,6 +37,7 @@
       loop:
         - systemd-timesyncd
         - locales
+        - btop
 
     - name: Set proper locale
       become: true

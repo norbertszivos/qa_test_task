@@ -19,3 +19,21 @@ services:
     command: redis-server --appendonly yes --requirepass "${SPRING_DATA_REDIS_PASSWORD}"
     volumes:
       - ./redis:/data
+  prometheus:
+    image: prom/prometheus:v2.52.0
+    restart: unless-stopped
+    depends_on:
+      simple-api:
+        condition: service_started
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+    image: grafana/grafana:11.0.0
+    restart: unless-stopped
+    depends_on:
+      simple-api:
+        condition: service_started
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./config/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
