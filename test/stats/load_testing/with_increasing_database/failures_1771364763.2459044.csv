@@ -1,0 +1,3 @@
+Method,Name,Error,Occurrences
+GET,/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58,"BadStatusCode('http://10.80.0.100:8080/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58', code=404)",1
+PUT,/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58,"BadStatusCode('http://10.80.0.100:8080/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58', code=404)",1
