@@ -170,6 +170,13 @@ ansible-playbook -i inventory playbooks/load_test_system/main.yml
 
 ### Run tests
 
+> [!NOTE]
+> To run the tests, you can use either http://10.80.0.100:8080 or http://api.load_test.lan.
+
+> [!NOTE]
+> To check the VM performance, you can use either http://10.80.0.100:3000 or http://grafana.load_test.lan.
+> The default credentials are admin/admin. To import the Spring Boot Grafana dashboard, use ID 11378.
+
 ```bash
 cd ../test
 ```
@@ -190,7 +197,7 @@ locust
 #### Using Locust headless mode
 
 ```bash
-locust --headless --host http://10.80.0.100:8080 --users 100 --spawn-rate 10 --run-time 60
+locust --headless --host http://10.80.0.100:8080 --users 100 --spawn-rate 10 --run-time 60 --csv=stats/results
 
 ...
 
@@ -218,10 +225,13 @@ PUT      /books/64f87e8c-3ecd-4411-978d-8f6381fa1c58                            
 Error report
 # occurrences      Error
 ------------------|---------------------------------------------------------------------------------------------------------------------------------------------
-3                  GET /books/64f87e8c-3ecd-4411-978d-8f6381fa1c58: BadStatusCode('http://localhost:8080/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58', code=404)
-2                  PUT /books/64f87e8c-3ecd-4411-978d-8f6381fa1c58: BadStatusCode('http://localhost:8080/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58', code=404)
+3                  GET /books/64f87e8c-3ecd-4411-978d-8f6381fa1c58: BadStatusCode('http://10.80.0.100:8080/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58', code=404)
+2                  PUT /books/64f87e8c-3ecd-4411-978d-8f6381fa1c58: BadStatusCode('http://10.80.0.100:8080/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58', code=404)
 ------------------|---------------------------------------------------------------------------------------------------------------------------------------------
 ```
+
+> [!NOTE]
+> You can find the test results (CSV files) in [test/stats/](./test/stats) folder.
 
 
 ### Rebuild the VM
