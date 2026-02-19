@@ -2,6 +2,9 @@
 
 **The project is using Vagrant for the VM, Ansible for managing the VM, and Locust for testing.**
 
+> [!NOTE]
+> You can see the test report file [here](./test/report.md).
+
 
 ## Why were these tools chosen?
 
@@ -45,17 +48,57 @@ Grafana:
 > Especially, the guest machine vCPU statistic collection runs into errors. So it can only collect the host CPU time.
 
 
-## Manual or semi-automated steps
+## Versions
+
+The following versions were used for development:
+* OS: Ubuntu 24.04 LTS
+* Vagrant: 2.4.9
+* Ansible core: 2.20.2
+* Locust: 2.24.0
+
+
+## Automated steps
+
+
+### Clone the project
+
+> [!NOTE]
+> Before running the command below, install `git` if it is needed.
+
+```bash
+git clone https://github.com/norbertszivos/qa_test_task.git
+cd qa_test_task
+```
 
 
 ### Preparation
 
 > [!NOTE]
-> The following versions were used for development:
-> * OS: Ubuntu 24.04 LTS
-> * Vagrant: 2.4.9
-> * Ansible core: 2.20.2
-> * Locust: 2.24.0
+> Before running the command below, install `make` if it is needed.
+
+```bash
+sudo make prepare
+```
+
+
+### Create and deploy the VM, then run the test
+
+```bash
+make
+```
+
+
+### Rebuild the VM
+
+```bash
+make rebuild
+```
+
+
+## Manual or semi-automated steps
+
+
+### Preparation
 
 
 #### Example how to install vagrant with libvirt
@@ -94,7 +137,7 @@ sudo apt install -y ansible
 > URL: https://locust.io/
 
 ```bash
-sudo apt install python3-locust
+sudo apt install -y python3-locust
 ```
 
 
@@ -178,4 +221,15 @@ Error report
 3                  GET /books/64f87e8c-3ecd-4411-978d-8f6381fa1c58: BadStatusCode('http://localhost:8080/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58', code=404)
 2                  PUT /books/64f87e8c-3ecd-4411-978d-8f6381fa1c58: BadStatusCode('http://localhost:8080/books/64f87e8c-3ecd-4411-978d-8f6381fa1c58', code=404)
 ------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+```
+
+
+### Rebuild the VM
+
+```bash
+cd ../vm
+vagrant destroy
+vagrant up
+cd ../ansible
+ansible-playbook -i inventory playbooks/load_test_system/main.yml
 ```
