@@ -8,4 +8,7 @@ docker_user: vagrant
 
 # --------------------------- simple_api role -----------------------------
 simple_api_docker_user: "{{ docker_user }}"
+simple_api_domain: api.load_test.lan
 simple_api_port: 8080
+simple_api_grafana_domain: grafana.load_test.lan
+simple_api_grafana_port: 3000

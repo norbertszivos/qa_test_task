@@ -1,0 +1,9 @@
+server {
+  listen 80;
+  server_name {{ simple_api_grafana_domain }};
+
+  location / {
+    proxy_pass http://grafana:{{ simple_api_grafana_port }};
+    proxy_set_header Host $http_host;
+  }
+}

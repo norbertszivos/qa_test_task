@@ -1,0 +1,8 @@
+server {
+  listen 80;
+  server_name {{ simple_api_domain }};
+
+  location / {
+    proxy_pass http://simple-api:{{ simple_api_port }};
+  }
+}

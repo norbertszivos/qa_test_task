@@ -9,17 +9,22 @@
         state: directory
         mode: '0755'
 
-    - name: Copy files
-      ansible.builtin.copy:
+    - name: Copy datasource config file
+      ansible.builtin.template:
+        src: files/datasources.yml
+        dest: "/home/{{ simple_api_docker_user }}/config/datasources.yml"
+        mode: '644'
+
+    - name: Render config file templates
+      ansible.builtin.template:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
         mode: '644'
       loop:
-        - { src: "files/compose.yml", dest: "/home/{{ simple_api_docker_user }}/compose.yml" }
-        - { src: "files/datasources.yml", dest: "/home/{{ simple_api_docker_user }}/config/datasources.yml" }
-        - { src: "files/prometheus.yml", dest: "/home/{{ simple_api_docker_user }}/config/prometheus.yml" }
-        - { src: "files/api_nginx.conf", dest: "/home/{{ simple_api_docker_user }}/config/api_nginx.conf" }
-        - { src: "files/grafana_nginx.conf", dest: "/home/{{ simple_api_docker_user }}/config/grafana_nginx.conf" }
+        - { src: "templates/compose.yml.jinja", dest: "/home/{{ simple_api_docker_user }}/compose.yml" }
+        - { src: "templates/prometheus.yml.jinja", dest: "/home/{{ simple_api_docker_user }}/config/prometheus.yml" }
+        - { src: "templates/api_nginx.conf.jinja", dest: "/home/{{ simple_api_docker_user }}/config/api_nginx.conf" }
+        - { src: "templates/grafana_nginx.conf.jinja", dest: "/home/{{ simple_api_docker_user }}/config/grafana_nginx.conf" }
 
     - name: Pull container images
       ansible.builtin.command: docker-compose pull
