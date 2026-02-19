@@ -174,8 +174,14 @@ ansible-playbook -i inventory playbooks/load_test_system/main.yml
 > To run the tests, you can use either http://10.80.0.100:8080 or http://api.load_test.lan.
 
 > [!NOTE]
-> To check the VM performance, you can use either http://10.80.0.100:3000 or http://grafana.load_test.lan.
+> To check the VM performance, open a browser and use either http://10.80.0.100:3000 or http://grafana.load_test.lan.
 > The default credentials are admin/admin. To import the Spring Boot Grafana dashboard, use ID 11378.
+
+> [!NOTE]
+> If you would like to use the http://api.load_test.lan or http://grafana.load_test.lan,
+> then add these two lines to the /etc/hosts file:<br>
+> 10.80.0.100 api.load_test.lan<br>
+> 10.80.0.100 grafana.load_test.lan
 
 ```bash
 cd ../test
