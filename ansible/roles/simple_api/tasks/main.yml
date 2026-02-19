@@ -18,6 +18,8 @@
         - { src: "files/compose.yml", dest: "/home/{{ simple_api_docker_user }}/compose.yml" }
         - { src: "files/datasources.yml", dest: "/home/{{ simple_api_docker_user }}/config/datasources.yml" }
         - { src: "files/prometheus.yml", dest: "/home/{{ simple_api_docker_user }}/config/prometheus.yml" }
+        - { src: "files/api_nginx.conf", dest: "/home/{{ simple_api_docker_user }}/config/api_nginx.conf" }
+        - { src: "files/grafana_nginx.conf", dest: "/home/{{ simple_api_docker_user }}/config/grafana_nginx.conf" }
 
     - name: Pull container images
       ansible.builtin.command: docker-compose pull

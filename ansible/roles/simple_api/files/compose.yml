@@ -37,3 +37,10 @@ services:
       - "3000:3000"
     volumes:
       - ./config/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+  nginx:
+    image: nginx:latest
+    ports:
+        - "80:80"
+    volumes:
+        - ./config/api_nginx.conf:/etc/nginx/conf.d/api_nginx.conf
+        - ./config/grafana_nginx.conf:/etc/nginx/conf.d/grafana_nginx.conf
