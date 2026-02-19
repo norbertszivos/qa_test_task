@@ -87,6 +87,10 @@ In these tests, it just requests data from the API.
 
 #### Load Testing
 
+> [!NOTE]
+> To see the full Locust report, download the [HTML](./stats/load_testing/with_constant_database/report_1771406375.609845.html) file.<br>
+> More images are available in the [stats/load_testing/with_constant_database/](./stats/load_testing/with_constant_database) folder.
+
 |            | Requests | Fails | Current RPS | Current Failures/s | Response time 95%ile (ms) |
 | ---------- | -------- | ----- | ----------- | ------------------ | ------------------------- |
 | Aggregated | 9891     | 0     | 34.2        | 0                  | 21                        |
@@ -111,6 +115,10 @@ The VM is healthy. It can handle the given load.
 ---
 
 #### Stress Testing
+
+> [!NOTE]
+> To see the full Locust report, download the [HTML](./stats/stress_testing/with_constant_database/report_1771407671.4958148.html) file.<br>
+> More images are available in the [stats/stress_testing/with_constant_database/](./stats/stress_testing/with_constant_database) folder.
 
 |            | Requests | Fails | Current RPS | Current Failures/s | Response time 95%ile (ms) |
 | ---------- | -------- | ----- | ----------- | ------------------ | ------------------------- |
@@ -137,6 +145,10 @@ The VM is healthy. It can handle the given load.
 
 #### Soak Testing
 
+> [!NOTE]
+> To see the full Locust report, download the [HTML](./stats/soak_testing/with_constant_database/report_1771417630.185841.html) file.<br>
+> More images are available in the [stats/soak_testing/with_constant_database/](./stats/soak_testing/with_constant_database) folder.
+
 |            | Requests | Fails | Current RPS | Current Failures/s | Response time 95%ile (ms) |
 | ---------- | -------- | ----- | ----------- | ------------------ | ------------------------- |
 | Aggregated | 477543   | 0     | 65.9        | 0                  | 20                        |
@@ -161,6 +173,10 @@ The VM is healthy. It can handle the given load.
 ---
 
 #### Spike Testing
+
+> [!NOTE]
+> To see the full Locust report, download the [HTML](./stats/spike_testing/with_constant_database/report_1771408667.229789.html) file.<br>
+> More images are available in the [stats/spike_testing/with_constant_database/](./stats/spike_testing/with_constant_database) folder.
 
 |            | Requests | Fails | Current RPS | Current Failures/s | Response time 95%ile (ms) |
 | ---------- | -------- | ----- | ----------- | ------------------ | ------------------------- |
@@ -196,6 +212,10 @@ In these tests, it requests and sends data to the API.
 
 #### Load Testing
 
+> [!NOTE]
+> To see the full Locust report, download the [HTML](./stats/load_testing/with_increasing_database/report_1771364771.702683.html) file.<br>
+> More images are available in the [stats/load_testing/with_increasing_database/](./stats/load_testing/with_increasing_database) folder.
+
 |            | Requests | Fails | Current RPS | Current Failures/s | Response time 95%ile (ms) |
 | ---------- | -------- | ----- | ----------- | ------------------ | ------------------------- |
 | Aggregated | 9852     | 2     | 32.4        | 0                  | 100                       |
@@ -222,6 +242,10 @@ The response time continuously increases as the database size increases.
 ---
 
 #### Stress Testing
+
+> [!NOTE]
+> To see the full Locust report, download the [HTML](./stats/stress_testing/with_increasing_database/report_1771367669.4894612.html) file.<br>
+> More images are available in the [stats/stress_testing/with_increasing_database/](./stats/stress_testing/with_increasing_database) folder.
 
 |            | Requests | Fails | Current RPS | Current Failures/s | Response time 95%ile (ms) |
 | ---------- | -------- | ----- | ----------- | ------------------ | ------------------------- |
@@ -251,6 +275,10 @@ The response time continuously increases as the database size increases.
 
 #### Soak Testing
 
+> [!NOTE]
+> To see the full Locust report, download the [HTML](./stats/soak_testing/with_increasing_database/report_1771401914.3688638.html) file.<br>
+> More images are available in the [stats/soak_testing/with_increasing_database/](./stats/soak_testing/with_increasing_database) folder.
+
 |            | Requests | Fails | Current RPS | Current Failures/s | Response time 95%ile (ms) |
 | ---------- | -------- | ----- | ----------- | ------------------ | ------------------------- |
 | Aggregated | 107263   | 7068  | 6.4         | 2.7                | 60000                     |
@@ -279,6 +307,10 @@ After an hour, the response time was stabilized at 60 seconds. In that time, the
 ---
 
 #### Spike Testing
+
+> [!NOTE]
+> To see the full Locust report, download the [HTML](./stats/spike_testing/with_increasing_database/report_1771369209.1198869.html) file.<br>
+> More images are available in the [stats/spike_testing/with_increasing_database/](./stats/spike_testing/with_increasing_database) folder.
 
 |            | Requests | Fails | Current RPS | Current Failures/s | Response time 95%ile (ms) |
 | ---------- | -------- | ----- | ----------- | ------------------ | ------------------------- |
