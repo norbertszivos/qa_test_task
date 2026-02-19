@@ -60,4 +60,4 @@ ansible_deploy:
 # =============================================================================
 
 locust_run_test:
-	cd test && locust --headless --host http://10.80.0.100:8080 --users 100 --spawn-rate 10 --run-time 60
+	cd test && locust --headless --host http://10.80.0.100:8080 --users 100 --spawn-rate 10 --run-time 60 --csv=stats/results
