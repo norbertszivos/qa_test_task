@@ -9,10 +9,11 @@ Ubuntu                     | 24.04 LTS   |
 │   └── Debian             | 13 (Trixie) | http://10.80.0.100
 │       ├── Docker         | 26.1.5      |
 │       └── Docker Compose | 2.26.1      |
-│           ├── Simple API | 1.0         | http://10.80.0.100:8080
+│           ├── Simple API | 1.0         | http://10.80.0.100:8080, http://api.load_test.lan
 │           ├── Redis      | 8.6.0       |
 │           ├── Prometheus | 2.52.0      |
-│           └── Grafana    | 11.0.0      | http://10.80.0.100:3000
+│           ├── Grafana    | 11.0.0      | http://10.80.0.100:3000, http://grafana.load_test.lan
+│           └── Nginx      | 1.29.5      |
 ├── libvirt                | 10.0.0      |
 ├── Python                 | 3.12.3      |
 ├── Ansible core           | 2.20.2      |
